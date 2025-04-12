@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장선영 - iOS 개발자 포트폴리오</title>
+    <style>
+        :root {
+            --primary: #007AFF;
+            --secondary: #5AC8FA;
+            --dark: #1D1D1F;
+            --light: #F5F5F7;
+            --gray: #86868B;
+            --light-gray: #E5E5EA;
+            --accent: #FF2D55;
+            --success: #34C759;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styling */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding-right: 60px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0062cc;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Section styling */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title .title-line {
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 0 auto;
+        }
+        
+        /* About section */
+        .about-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .skills {
+            flex: 1;
+        }
+        
+        .skill-category {
+            margin-bottom: 25px;
+        }
+        
+        .skill-category h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-category h4 i {
+            color: var(--primary);
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background-color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Experience section */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--light-gray);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--light-gray);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--light-gray);
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--light-gray);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--light-gray) transparent transparent;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-subtitle {
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-details {
+            margin-top: 15px;
+        }
+        
+        .timeline-details ul {
+            padding-left: 20px;
+        }
+        
+        .timeline-details li {
+            margin-bottom: 8px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 15px;
+        }
+        
+        .tech-tag {
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        /* Projects section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-title i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .project-meta i {
+            color: var(--primary);
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .project-link:hover {
+            color: var(--accent);
+        }
+        
+        /* Education & Certificates section */
+        .education-grid, .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        
+        .education-card, .certificate-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .education-card:hover, .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .education-date, .certificate-date {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        .education-title, .certificate-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .education-institution, .certificate-issuer {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .certificate-card i {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+        
+        /* Contact section */
+        .contact-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer styling */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-about {
+            flex: 2;
+            padding-right: 50px;
+        }
+        
+        .footer-about p {
+            color: #A1A1A6;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            flex: 1;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-nav {
+            list-style: none;
+        }
+        
+        .footer-nav li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-nav a {
+            color: #A1A1A6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-nav a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #A1A1A6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 0;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                padding-top: 40px;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--light-gray) transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .contact-wrapper {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-about {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .project-tech, .project-links {
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">장선영</div>
+                <ul class="nav-links">
+                    <li><a href="#about">소개</a></li>
+                    <li><a href="#experience">경력</a></li>
+                    <li><a href="#projects">프로젝트</a></li>
+                    <li><a href="#education">학력 및 자격증</a></li>
+                    <li><a href="#contact">연락처</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" style="padding-right: 0; text-align: left; max-width: 100%; margin-left: 0;">
+                <h1 style="text-align: left;">안녕하세요,<br>기록하는 개발자 장선영입니다</h1>
+                <h2 style="text-align: left;">iOS Developer</h2>
+                <p style="text-align: left;">지식을 글로 작성하는 것을 좋아합니다. Github와 velog 기술블로그를 운영하며 새로 배운 지식들을 작성하고 공유하고 있습니다. 끊임없이 고민하고 협력을 통해 사용자에게 더 나은 서비스를 제공하는 개발자가 되고자 합니다.</p>
+                <div class="cta-buttons" style="justify-content: flex-start; display: flex;">
+                    <a href="#contact" class="btn btn-primary">연락하기</a>
+                    <a href="#projects" class="btn btn-outline">프로젝트 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h3>About Me</h3>
+                <div class="title-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>3년 차 iOS 개발자로서 Clean Architecture와 MVVM/TCA 아키텍처 패턴에 전문성을 갖추고 있습니다. SDK 개발부터 상용 앱 출시까지 전체 개발 사이클에 숙련된 경험을 보유하고 있으며, 사용자 경험과 코드 품질을 모두 중시합니다.</p>
+                    <p>현업에서 iOS SDK 및 앱 개발 경험을 바탕으로 효율적인 협업과 최적화된 솔루션을 제공합니다. 새로운 기술에 대한 학습을 즐기며, 문제 해결 능력과 협업 역량을 갖추고 있습니다.</p>
+                    <p>다양한 앱 출시 경험과 SDK 개발을 통해 iOS 생태계에 대한 깊은 이해를 바탕으로 최적의 개발 방법론을 적용하고 있습니다.</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h4><i class="fas fa-mobile-alt"></i> iOS Skills</h4>
+                        <div class="skill-tags">
+                            <div class="skill-tag">UIKit</div>
+                            <div class="skill-tag">SwiftUI</div>
+                            <div class="skill-tag">Clean Architecture</div>
+                            <div class="skill-tag">MVVM</div>
+                            <div class="skill-tag">RxSwift</div>
+                            <div class="skill-tag">RxCocoa</div>
+                            <div class="skill-tag">TCA</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-code"></i> Programming Languages</h4>
+                        <div class="skill-tags">
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">Objective-C</div>
+                            <div class="skill-tag">Linux</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-database"></i> Networking & Data</h4>
+                        <div class="skill-tags">
+                            <div class="skill-tag">REST API</div>
+                            <div class="skill-tag">Moya</div>
+                            <div class="skill-tag">Alamofire</div>
+                            <div class="skill-tag">Firebase</div>
+                            <div class="skill-tag">CoreData</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-tools"></i> DevOps</h4>
+                        <div class="skill-tags">
+                            <div class="skill-tag">Git</div>
+                            <div class="skill-tag">Jira</div>
+                            <div class="skill-tag">Fastlane</div>
+                            <div class="skill-tag">CocoaPods</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-title">
+                <h3>Work Experience</h3>
+                <div class="title-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.11 - 현재</div>
+                        <h3 class="timeline-title">나스미디어</h3>
+                        <h4 class="timeline-subtitle">iOS 광고용 SDK 개발 담당</h4>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Clean-Architecture + MVVM로 SDK 아키텍처 설계</li>
+                                <li>code-base UI 개발, Rest API 서버 통신</li>
+                                <li>Cocopods로 iOS SDK 의존성 관리</li>
+                                <li>SwiftUI로 SDK Test App 개발</li>
+                                <li>Fastlane으로 배포 자동화 구축</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">UIKit</div>
+                            <div class="tech-tag">SwiftUI</div>
+                            <div class="tech-tag">RxSwift</div>
+                            <div class="tech-tag">Clean-Architecture</div>
+                            <div class="tech-tag">MVVM</div>
+                            <div class="tech-tag">Fastlane</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.01 - 2023.07</div>
+                        <h3 class="timeline-title">프리랜서 iOS 개발</h3>
+                        <h4 class="timeline-subtitle">신규 iOS 앱 개발 및 기존 앱 버그 개선 업무</h4>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Firebase realtime 기반 실시간 채팅 구현</li>
+                                <li>iOS Vision Framework 기반 이미지 인식 구현</li>
+                                <li>부트페이 기반 PG 사 결제 구현</li>
+                                <li>간편로그인(카카오,네이버, Apple, FaceBook, Google) 구현</li>
+                                <li>Instagram, Kakao Chat 등 SNS UI 개발</li>
+                                <li>common UI, design system 적용하여 코드 반복 개선</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">Swift</div>
+                            <div class="tech-tag">UIKit</div>
+                            <div class="tech-tag">RxSwift</div>
+                            <div class="tech-tag">Clean-Architecture</div>
+                            <div class="tech-tag">MVVM</div>
+                            <div class="tech-tag">Firebase</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022.04 - 2022.10</div>
+                        <h3 class="timeline-title">InBody</h3>
+                        <h4 class="timeline-subtitle">InBody, BWA iOS 앱 개발 업무</h4>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>약 15개의 다국어 관리 및 Objective-C로 개발된 UI 개선</li>
+                                <li>Custom class, framework 개발하여 코드 개선 및 앱 최적화</li>
+                                <li>쿠콘 인증 API 기반 사용자 건강검진 데이터 연동 framework 개발</li>
+                                <li>Apple HealthKit 기반 건강 데이터 연동 framework 개발</li>
+                                <li>WKWebView 사용하여 인앱 웹뷰 구현</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">Swift</div>
+                            <div class="tech-tag">Objective-C</div>
+                            <div class="tech-tag">UIKit</div>
+                            <div class="tech-tag">RestAPI</div>
+                            <div class="tech-tag">WKWebView</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022.04 - 2022.10</div>
+                        <h3 class="timeline-title">InBody</h3>
+                        <h4 class="timeline-subtitle">BWA 앱 개발</h4>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Autolayout custom UI 개발</li>
+                                <li>Rest API 네트워크 통신 구축</li>
+                                <li>Clean-Architecture + MVVM 기반 프로젝트 구조 설계</li>
+                                <li>데이터 그래프 framework 개발 및 문서화</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">
+                            <div class="tech-tag">Swift</div>
+                            <div class="tech-tag">ReactorKit</div>
+                            <div class="tech-tag">RxSwift</div>
+                            <div class="tech-tag">Clean-Architecture</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h3>Projects</h3>
+                <div class="title-line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-book"></i> Storit</h3>
+                        <p class="project-description">AI와 채팅을 통해 소설을 작성하는 서비스</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2024.09 ~ 진행 중</span>
+                            <span><i class="fas fa-users"></i> iOS 1명, 백엔드 2명, 데이터사이언티스트 2명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">SwiftUI</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">TCACoordinator</div>
+                            <div class="skill-tag">Composable Architecture</div>
+                            <div class="skill-tag">Firebase</div>
+                            <div class="skill-tag">RestAPI</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://apps.apple.com/kr/app/storit/id6738114068" class="project-link" target="_blank"><i class="fab fa-app-store-ios"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-gift"></i> RouteBox</h3>
+                        <p class="project-description">위치 기반 여행 루트 제공 서비스</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2024.08 ~ 진행 중</span>
+                            <span><i class="fas fa-users"></i> iOS 3명, 백엔드 3명, Android 2명, 디자인 1명, 기획 2명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">SwiftUI</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">TCACoordinator</div>
+                            <div class="skill-tag">Composable Architecture</div>
+                            <div class="skill-tag">RestAPI</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.instagram.com/routebox._.official/" class="project-link" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://github.com/Route-Box" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-duck"></i> Duckie</h3>
+                        <p class="project-description">덕질엔 끝이 없다, 취향따라 만나는 커뮤니티</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2023.10 ~ 2024.01</span>
+                            <span><i class="fas fa-users"></i> iOS 2명, 백엔드 2명, Android 2명, 디자인 1명, 기획 1명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">SwiftUI</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">MVVM</div>
+                            <div class="skill-tag">RestAPI</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://apps.apple.com/kr/app/duckie/id6446149826?l=en-GB" class="project-link" target="_blank"><i class="fab fa-app-store-ios"></i> App Store</a>
+                            <a href="https://github.com/duckie-team" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-home"></i> 동네한입</h3>
+                        <p class="project-description">1인 가구를 위한 맞춤형 동네 찾기 서비스</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2022.11 ~ 진행 중</span>
+                            <span><i class="fas fa-users"></i> iOS 3명, 백엔드 2명, 디자인 1명, 기획 1명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">UIKit</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">Clean Architecture</div>
+                            <div class="skill-tag">MVVM</div>
+                            <div class="skill-tag">RxSwift</div>
+                            <div class="skill-tag">RestAPI</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://apps.apple.com/us/app/동네한입/id1667747981" class="project-link" target="_blank"><i class="fab fa-app-store-ios"></i> App Store</a>
+                            <a href="https://github.com/FindTown/FindTown-iOS" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://www.yapp.co.kr/project/21th/dongnehanip" class="project-link" target="_blank"><i class="fas fa-globe"></i> Website</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-comments"></i> F!nder</h3>
+                        <p class="project-description">MBTI 기반 Q&A 커뮤니티 서비스</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2022.05 - 2022.07</span>
+                            <span><i class="fas fa-users"></i> iOS 1명, Android 2명, 백엔드 1명, 디자인 1명, 기획 1명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">UIKit</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">SnapKit</div>
+                            <div class="skill-tag">Then</div>
+                            <div class="skill-tag">Clean Architecture</div>
+                            <div class="skill-tag">MVVM</div>
+                            <div class="skill-tag">RxSwift</div>
+                            <div class="skill-tag">RestAPI</div>
+                            <div class="skill-tag">Moya</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/finder-dev/finder_iOS" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title"><i class="fas fa-baby"></i> AHMH</h3>
+                        <p class="project-description">위치 기반 육아 정보, 돌보미 정보를 제공하는 육아 통합 플랫폼</p>
+                        <div class="project-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2021.09 - 2021.10</span>
+                            <span><i class="fas fa-users"></i> 개발자 1명, 기획 1명</span>
+                        </div>
+                        <div class="project-tech">
+                            <div class="skill-tag">UIKit</div>
+                            <div class="skill-tag">Swift</div>
+                            <div class="skill-tag">StoryBoard UI</div>
+                            <div class="skill-tag">Firebase</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/seonyoung42/AHMH" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education-section">
+        <div class="container">
+            <div class="section-title">
+                <h3>Education & Certificates</h3>
+                <div class="title-line"></div>
+            </div>
+            
+            <h4 style="margin-bottom: 30px; color: var(--primary);">Education</h4>
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>부산대학교 (2017.03 - 2022.02)</h4>
+                        <p>대기환경과학과</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Swift, UIKit, SwiftUI를 사용한 iOS 개발 강의 이수</li>
+                            <li>Linux, ncl 기반 기상데이터 가공 프로그래밍</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>SRH Hochschule Heidelberg (2019.02 - 2019.08)</h4>
+                        <p>독일 교환학생</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 style="margin: 50px 0 30px; color: var(--primary);">Certificates & Awards</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px; min-width: 300px; flex: 1;">
+                    <div class="contact-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>OPIc - IH (2023.09)</h4>
+                        <p>ACTFL</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px; min-width: 300px; flex: 1;">
+                    <div class="contact-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>TOEIC 940 (2021.12)</h4>
+                        <p>한국 TOEIC 위원회</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px; min-width: 300px; flex: 1;">
+                    <div class="contact-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>정보처리기사 (2021.11)</h4>
+                        <p>한국산업인력공단</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px; min-width: 300px; flex: 1;">
+                    <div class="contact-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>행정안전부장관상(대상) (2021.10)</h4>
+                        <p>제 4회 데이터 걸스데이</p>
+                        <p style="margin-top: 5px; font-size: 0.9em;">위치 기반 육아 플랫폼(AHMH)을 개발하여 38팀 중 1위 수상</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 style="margin: 50px 0 30px; color: var(--primary);">Experience</h4>
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>IT 연합 앱 런칭 동아리 YAPP 21기 (2022.12 ~ 2023.03)</h4>
+                        <p>iOS 개발자</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>IT 연합 앱 런칭 동아리 CMC 10기 (2022.05 ~ 2022.07)</h4>
+                        <p>iOS 개발자</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>부산대학교 앱 개발 창업 동아리 APPTIVE (2021.03 ~ 2021.09)</h4>
+                        <p>iOS 개발자</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item" style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="contact-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>CS50 코칭스터디 2기 (2021.02)</h4>
+                        <p>네이버 커넥트</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h3>Contact Me</h3>
+                <div class="title-line"></div>
+            </div>
+            <div class="contact-wrapper" style="display: flex; justify-content: center; margin: 40px 0;">
+                <div class="contact-info" style="display: flex; gap: 40px;">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>sunwarrant@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/seonyoung42" target="_blank">github.com/seonyoung42</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Blog</h4>
+                            <a href="https://velog.io/@sun02" target="_blank">velog.io/@sun02</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">장선영</div>
+                    <p>기록하는 iOS 개발자 장선영입니다. 끊임없이 고민하고 협력을 통해 사용자에게 더 나은 서비스를 제공하는 개발자가 되고자 합니다.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/seonyoung42" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://velog.io/@sun02" class="social-link" target="_blank"><i class="fas fa-blog"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-nav">
+                        <li><a href="#about">소개</a></li>
+                        <li><a href="#experience">경력</a></li>
+                        <li><a href="#projects">프로젝트</a></li>
+                        <li><a href="#education">학력 및 자격증</a></li>
+                        <li><a href="#contact">연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 장선영 - iOS Developer Portfolio. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 스크롤 시 헤더에 그림자 효과
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        });
+        
+        // 스크롤 애니메이션
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
